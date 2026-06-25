@@ -1,6 +1,6 @@
 app-id: io.github.basshift.Recall
 runtime: org.gnome.Platform
-runtime-version: "49"
+runtime-version: "50"
 sdk: org.gnome.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.rust-stable
@@ -19,11 +19,10 @@ modules:
         CARGO_HOME: /run/build/recall/cargo
     build-commands:
       - cargo build --release --verbose --frozen --offline
-      - install -Dm755 target/release/recall /app/bin/recall
-      - install -Dm644 data/io.github.basshift.Recall.desktop /app/share/applications/io.github.basshift.Recall.desktop
-      - install -Dm644 data/io.github.basshift.Recall.metainfo.xml /app/share/metainfo/io.github.basshift.Recall.metainfo.xml
-      - install -Dm644 data/icons/hicolor/scalable/apps/io.github.basshift.Recall.svg /app/share/icons/hicolor/scalable/apps/io.github.basshift.Recall.svg
-      - install -Dm644 LICENSE /app/share/licenses/io.github.basshift.Recall/LICENSE
+      - install -Dm755 target/release/recall -t /app/bin/
+      - install -Dm644 data/${FLATPAK_ID}.desktop -t /app/share/applications/
+      - install -Dm644 data/${FLATPAK_ID}.metainfo.xml -t /app/share/metainfo/
+      - install -Dm644 data/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg -t /app/share/icons/hicolor/scalable/apps/
     sources:
       - type: git
         url: https://github.com/basshift/Recall.git
